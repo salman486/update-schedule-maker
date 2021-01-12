@@ -2,9 +2,9 @@ import React from "react";
 import "./Popup.css";
 import "./style.css";
 
-const Popup = () => {
+const Popup = (props) => {
   return (
-    <section className="hidden">
+    <section className={`${props.popup ? "" : "hidden"}`}>
       <div className="Popup"></div>
       <div className="Popup-content">
         <div>

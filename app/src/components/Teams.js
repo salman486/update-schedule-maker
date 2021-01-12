@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { TeamsContext } from "../contexts/TeamsContext";
+// import React, { useContext } from "react";
+// import { TeamsContext } from "../contexts/TeamsContext";
 import "./style.css";
 import "./Teams.css";
 
 function Teams() {
-  const teams = useContext(TeamsContext);
-  console.log(teams);
+  // const teams = useContext(TeamsContext);
+  // console.log(teams);
 
   return (
     <div className="Teams">

@@ -5,7 +5,7 @@ import "./Schedule.css";
 
 function Schedule() {
   return (
-    <div className="Schedule">
+    <div className="Schedule hidden">
       <div className="Schedule-teams-container">
         <p className="Schedule-teams">Remaining Teams: 128</p>
       </div>

@@ -2,11 +2,13 @@ import React from "react";
 import "./Header.css";
 import "./style.css";
 
-function Header() {
+function Header(props) {
   return (
     <header className="Header">
       <h1 className="Header-heading">Schedule Maker</h1>
-      <button className="Header-new-btn btn">New Schedule</button>
+      <button className="Header-new-btn btn" onClick={props.popup}>
+        New Schedule
+      </button>
     </header>
   );
 }
