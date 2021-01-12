@@ -6,7 +6,7 @@ function Header(props) {
   return (
     <header className="Header">
       <h1 className="Header-heading">Schedule Maker</h1>
-      <button className="Header-new-btn btn" onClick={props.popup}>
+      <button className="Header-new-btn btn" onClick={props.openPopup}>
         New Schedule
       </button>
     </header>

@@ -3,6 +3,13 @@ import "./Popup.css";
 import "./style.css";
 
 const Popup = (props) => {
+  function inputHandler() {
+    const totalTeams = +document.querySelector("#teams").value;
+    if (!(totalTeams && Number.isFinite(totalTeams) && totalTeams % 2 === 0))
+      return;
+    props.closePopup(totalTeams);
+  }
+
   return (
     <section className={`${props.popup ? "" : "hidden"}`}>
       <div className="Popup"></div>
@@ -14,7 +21,9 @@ const Popup = (props) => {
           <input type="number" className="Popup-teams--input" id="teams" />
         </div>
 
-        <button className="btn Popup-btn">Submit</button>
+        <button className="btn Popup-btn" onClick={inputHandler}>
+          Submit
+        </button>
       </div>
     </section>
   );
