@@ -1,0 +1,32 @@
+button {
+  border: none;
+  cursor: pointer;
+  font-family: "Heebo", sans-serif;
+}
+
+button:focus,
+input:focus {
+  outline: none;
+}
+
+label,
+input,
+button {
+  font-family: "Heebo", sans-serif;
+}
+
+.btn {
+  background-color: #f3aa4e;
+  font-weight: 400;
+  transition: all 0.5s;
+  color: #111820;
+}
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 1px 1px 3px 1px #f3a94e59;
+}
+
+.hidden {
+  display: none !important;
+}
