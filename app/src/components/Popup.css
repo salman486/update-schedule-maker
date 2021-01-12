@@ -1,0 +1,90 @@
+.Popup {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.356);
+}
+
+.Popup-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 200px;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 10000;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Heebo", sans-serif;
+  flex-direction: column;
+}
+
+.Popup-teams--input {
+  width: 40px;
+  height: 15px;
+  padding: 5px;
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 5px;
+}
+
+.Popup-teams--input:focus {
+  outline: none;
+  border: 1px solid rgb(80, 80, 80);
+}
+
+.Popup-teams--label {
+  margin-right: 10px;
+}
+
+.Popup-btn {
+  /* width: 100%; */
+  padding: 8px 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.Popup-btn:hover {
+  transform: scale(1.05);
+}
+
+.Popup-btn:active {
+  transform: scale(0.98);
+}
+
+@media screen and (max-width: 600px) {
+  .Popup-content {
+    height: 130px;
+    width: 340px;
+  }
+
+  .Popup-btn {
+    padding: 4px 10px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .Popup-content {
+    height: 120px;
+    width: 270px;
+  }
+
+  .Popup-btn {
+    padding: 4px 10px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .Popup-content {
+    height: 100px;
+    width: 220px;
+    font-size: 14px;
+  }
+
+  .Popup-btn {
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+}
