@@ -2,7 +2,7 @@ import React from "react";
 import "./Popup.css";
 import "./style.css";
 
-const Popup = (props) => {
+function Popup(props) {
   function inputHandler() {
     const totalTeams = +document.querySelector("#teams").value;
     if (!(totalTeams && Number.isFinite(totalTeams) && totalTeams % 2 === 0))
@@ -27,6 +27,6 @@ const Popup = (props) => {
       </div>
     </section>
   );
-};
+}
 
 export default Popup;

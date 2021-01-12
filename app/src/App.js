@@ -15,6 +15,7 @@ let totalTeams = 0;
 
 function App() {
   const [popup, setPopup] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(false);
 
   // function calls from Header when click on new schedule btn and set popup to true
   function openPopup() {
@@ -25,6 +26,9 @@ function App() {
   function closePopup(teams) {
     setPopup(false);
     totalTeams = teams;
+
+    // show schedule as we get data successfully
+    setShowSchedule(true);
   }
 
   return (
@@ -32,7 +36,7 @@ function App() {
       <div>
         <Popup popup={popup} closePopup={closePopup} />
         <Header openPopup={openPopup} />
-        <Schedule />
+        <Schedule showSchedule={showSchedule} />
       </div>
     </TeamsContext.Provider>
   );

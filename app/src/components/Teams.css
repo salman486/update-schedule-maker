@@ -39,8 +39,9 @@
   background-color: #3dcf9fea;
 }
 
-.Teams-disabled:hover {
-  background-color: #4ef3bcea !important;
+.Teams-btn--disabled {
+  cursor: initial !important;
+  background-color: #3dcf9fea !important;
 }
 
 .Teams-btn:active {
