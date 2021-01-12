@@ -13,6 +13,7 @@ const Popup = () => {
           </label>
           <input type="number" className="Popup-teams--input" id="teams" />
         </div>
+
         <button className="btn Popup-btn">Submit</button>
       </div>
     </section>
