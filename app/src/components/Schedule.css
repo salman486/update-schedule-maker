@@ -1,0 +1,117 @@
+.Schedule-area {
+  height: 420px;
+  overflow: scroll;
+  margin: 0px 15%;
+}
+
+.Schedule-submit-btn,
+.Schedule-reset-btn {
+  margin: 10px 15% 0px 15%;
+  width: 70%;
+  height: 35px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.Schedule-reset-btn {
+  margin-bottom: 10px;
+}
+
+.disabled {
+  background-color: rgb(219, 219, 219) !important;
+  color: rgb(119, 119, 119) !important;
+  cursor: initial;
+}
+
+.Schedule-teams-container {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.Schedule-teams {
+  font-family: "Heebo", sans-serif;
+  display: inline-block;
+  font-size: 20px;
+  margin: 0;
+  background-color: #f1bd7d;
+  padding: 2px 10px;
+  border-radius: 2px;
+}
+
+.color-red {
+  color: red;
+}
+
+.color-green {
+  color: rgb(5, 168, 5);
+}
+
+@media screen and (max-width: 950px) {
+  .Schedule-area {
+    margin: 0px 10%;
+  }
+  .Schedule-submit-btn,
+  .Schedule-reset-btn {
+    margin: 10px 10% 0px 10%;
+    /* margin: 10px 10%; */
+    width: 80%;
+  }
+  .Schedule-reset-btn {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .Schedule-area {
+    margin: 0px 2%;
+  }
+  .Schedule-submit-btn,
+  .Schedule-reset-btn {
+    margin: 10px 2% 0px 2%;
+    width: 96%;
+  }
+  .Schedule-reset-btn {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .Schedule-teams-container {
+    margin: 7px auto;
+  }
+
+  .Schedule-teams {
+    font-size: 16px;
+  }
+  .Schedule-submit-btn,
+  .Schedule-reset-btn {
+    font-size: 16px;
+    margin: 7px 2% 0px 2%;
+  }
+  .Schedule-reset-btn {
+    margin-bottom: 7px;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .Schedule-teams-container {
+    margin: 5px auto;
+  }
+
+  .Schedule-teams {
+    font-size: 14px;
+  }
+  .Schedule-submit-btn,
+  .Schedule-reset-btn {
+    font-size: 14px;
+    margin: 5px 2% 0px 2%;
+  }
+  .Schedule-reset-btn {
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .Schedule-teams {
+    font-size: 12px;
+  }
+}

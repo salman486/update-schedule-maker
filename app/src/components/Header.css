@@ -42,12 +42,14 @@
 @media screen and (max-width: 830px) {
   .Header {
     padding: 0 5%;
-    letter-spacing: 0;
     word-spacing: 2px;
   }
 }
 
 @media screen and (max-width: 560px) {
+  .Header {
+    height: 50px;
+  }
   .Header-heading {
     font-size: 22px;
   }
@@ -62,6 +64,7 @@
 @media screen and (max-width: 320px) {
   .Header {
     height: 40px;
+    letter-spacing: 0;
   }
   .Header-heading {
     font-size: 16px;
