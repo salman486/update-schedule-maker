@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Teams from "./Teams";
+import scheduleMaker from "../working/scheduleMaker";
 import "./style.css";
 import "./Schedule.css";
 
@@ -50,6 +51,9 @@ function Schedule(props) {
       <button
         className={`Schedule-submit-btn btn ${currTeams && "disabled"}`}
         disabled={currTeams}
+        onClick={() => {
+          scheduleMaker(teams);
+        }}
       >
         COPY YOUR SCHEDULE
       </button>
