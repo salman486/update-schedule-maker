@@ -6,6 +6,12 @@ function Teams({ addTeam, disable }) {
   const [teamName, setTeamName] = useState("");
   const [teamValue, setTeamValue] = useState(0);
 
+  function getTeamData() {
+    if (teamName.length === 0 || teamValue <= 0 || !Number.isFinite(teamValue))
+      return;
+    addTeam({ teamName, teamValue });
+  }
+
   return (
     <div className="Teams">
       <label className="Teams-label">Enter name: </label>
@@ -20,7 +26,7 @@ function Teams({ addTeam, disable }) {
       <label className="Teams-label">Enter teams: </label>
       <input
         value={teamValue}
-        onChange={(e) => setTeamValue(e.target.value)}
+        onChange={(e) => setTeamValue(+e.target.value)}
         type="number"
         className="Teams-input Teams-input--number"
         disabled={disable}
@@ -28,7 +34,7 @@ function Teams({ addTeam, disable }) {
 
       <button
         className={`btn Teams-btn ${disable ? "Teams-btn--disabled" : ""}`}
-        onClick={() => addTeam({ teamName, teamValue })}
+        onClick={getTeamData}
         disabled={disable}
       >
         +
