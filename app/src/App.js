@@ -36,7 +36,7 @@ function App() {
       <div>
         <Popup popup={popup} closePopup={closePopup} />
         <Header openPopup={openPopup} />
-        <Schedule showSchedule={showSchedule} />
+        <Schedule showSchedule={showSchedule} totalTeams={totalTeams} />
       </div>
     </TeamsContext.Provider>
   );
