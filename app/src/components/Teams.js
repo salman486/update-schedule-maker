@@ -4,12 +4,16 @@ import "./Teams.css";
 
 function Teams({ addTeam, disable }) {
   const [teamName, setTeamName] = useState("");
-  const [teamValue, setTeamValue] = useState(0);
+  const [teamValue, setTeamValue] = useState("");
 
   function getTeamData() {
-    if (teamName.length === 0 || teamValue <= 0 || !Number.isFinite(teamValue))
+    if (
+      teamName.trim().length === 0 ||
+      teamValue <= 0 ||
+      !Number.isFinite(teamValue)
+    )
       return;
-    addTeam({ teamName, teamValue });
+    addTeam({ teamName: teamName.trim(), teamValue });
   }
 
   return (
