@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Teams from "./Teams";
 import "./style.css";
 import "./Schedule.css";
@@ -6,6 +7,21 @@ import { TeamsContext } from "../contexts/TeamsContext";
 
 function Schedule(props) {
   const totalTeams = useContext(TeamsContext);
+  const [teams, setTeams] = useState([]);
+
+  useEffect(() => {
+    setTeams([{ teamId: uuidv4().slice(0, 8), teamName: "", teamValue: "" }]);
+    console.log(totalTeams);
+  }, [totalTeams]);
+
+  const addTeam = (team) => {
+    setTeams((prevTeams) => [
+      ...prevTeams,
+      { teamId: uuidv4().slice(0, 8), ...team },
+    ]);
+    console.log(teams);
+  };
+
   return (
     <div className={`Schedule ${props.showSchedule ? "" : "hidden"}`}>
       <div className="Schedule-teams-container">
@@ -13,7 +29,9 @@ function Schedule(props) {
       </div>
 
       <section className="Schedule-area">
-        <Teams />
+        {teams.map((team) => (
+          <Teams team={team} key={team.teamId} addTeam={addTeam} />
+        ))}
       </section>
 
       <button className="Schedule-submit-btn btn disabled" disabled>
