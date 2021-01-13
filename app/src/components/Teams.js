@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./style.css";
 import "./Teams.css";
+import { TeamsContext } from "../contexts/TeamsContext";
 
+let totalTeams;
+let currentTeams = 0;
 function Teams({ addTeam, disable }) {
   const [teamName, setTeamName] = useState("");
   const [teamValue, setTeamValue] = useState("");
+  totalTeams = useContext(TeamsContext);
 
   function getTeamData() {
+    const tname = teamName.trim();
+    const tvalue = +teamValue;
     if (
-      teamName.trim().length === 0 ||
-      teamValue <= 0 ||
-      !Number.isFinite(teamValue)
+      tname.length === 0 ||
+      tvalue <= 0 ||
+      !Number.isFinite(tvalue) ||
+      currentTeams + tvalue > totalTeams
     )
       return;
-    addTeam({ teamName: teamName.trim(), teamValue });
+    currentTeams += tvalue;
+    addTeam({ teamName: tname, teamValue: tvalue });
   }
 
   return (
@@ -30,7 +38,7 @@ function Teams({ addTeam, disable }) {
       <label className="Teams-label">Enter teams: </label>
       <input
         value={teamValue}
-        onChange={(e) => setTeamValue(+e.target.value)}
+        onChange={(e) => setTeamValue(e.target.value)}
         type="number"
         className="Teams-input Teams-input--number"
         disabled={disable}

@@ -6,23 +6,34 @@ import "./Schedule.css";
 
 function Schedule(props) {
   const [teams, setTeams] = useState([]);
+  const [currTeams, setCurrTeams] = useState("");
 
   useEffect(() => {
     setTeams([{ teamId: uuidv4().slice(0, 8), teamName: "", teamValue: "" }]);
   }, []);
+
+  useEffect(() => {
+    if (props.totalTeams !== 0) setCurrTeams(props.totalTeams);
+  }, [props.totalTeams]);
 
   const addTeam = (team) => {
     setTeams((prevTeams) => [
       ...prevTeams,
       { teamId: uuidv4().slice(0, 8), ...team },
     ]);
+    setCurrTeams(currTeams - team["teamValue"]);
   };
-  console.log(teams);
 
   return (
     <div className={`Schedule ${props.showSchedule ? "" : "hidden"}`}>
       <div className="Schedule-teams-container">
-        <p className="Schedule-teams">Remaining Teams: </p>
+        <p
+          className={`Schedule-teams ${
+            currTeams ? "color-red" : "color-green"
+          }`}
+        >
+          Remaining Teams: {currTeams}
+        </p>
       </div>
 
       <section className="Schedule-area">
@@ -36,10 +47,16 @@ function Schedule(props) {
         ))}
       </section>
 
-      <button className="Schedule-submit-btn btn disabled" disabled>
+      <button
+        className={`Schedule-submit-btn btn ${currTeams && "disabled"}`}
+        disabled={currTeams}
+      >
         COPY YOUR SCHEDULE
       </button>
-      <button className="Schedule-reset-btn btn disabled" disabled>
+      <button
+        className={`Schedule-reset-btn btn ${currTeams && "disabled"}`}
+        disabled={currTeams}
+      >
         RESET SCHEDULE
       </button>
     </div>
