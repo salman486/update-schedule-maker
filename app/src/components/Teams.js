@@ -1,39 +1,36 @@
 import React, { useState } from "react";
-// import { TeamsContext } from "../contexts/TeamsContext";
 import "./style.css";
 import "./Teams.css";
 
-import { v4 as uuidv4 } from "uuid";
-
-function Teams() {
+function Teams({ addTeam, disable }) {
   const [teamName, setTeamName] = useState("");
-  const [teamValue, setTeamVaue] = useState("");
-
-  function getTeamData() {
-    if (teamName.length === 0 || teamValue <= 0 || !Number.isFinite(teamValue))
-      return;
-    console.log(teamName, teamValue);
-  }
+  const [teamValue, setTeamValue] = useState(0);
 
   return (
     <div className="Teams">
       <label className="Teams-label">Enter name: </label>
       <input
         type="text"
-        className="Teams-input Teams-input--text"
-        onChange={(e) => setTeamName(e.target.value)}
         value={teamName}
+        onChange={(e) => setTeamName(e.target.value)}
+        className="Teams-input Teams-input--text"
+        disabled={disable}
       />
 
       <label className="Teams-label">Enter teams: </label>
       <input
+        value={teamValue}
+        onChange={(e) => setTeamValue(e.target.value)}
         type="number"
         className="Teams-input Teams-input--number"
-        onChange={(e) => setTeamVaue(+e.target.value)}
-        value={teamValue}
+        disabled={disable}
       />
 
-      <button className="btn Teams-btn" onClick={getTeamData}>
+      <button
+        className={`btn Teams-btn ${disable ? "Teams-btn--disabled" : ""}`}
+        onClick={() => addTeam({ teamName, teamValue })}
+        disabled={disable}
+      >
         +
       </button>
     </div>
