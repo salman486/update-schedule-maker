@@ -5,19 +5,26 @@ import scheduleMaker, { getTeams } from "../working/scheduleMaker";
 import "./style.css";
 import "./Schedule.css";
 
+let reset = false;
 function Schedule(props) {
   const [teams, setTeams] = useState([]);
   const [currTeams, setCurrTeams] = useState("");
 
   useEffect(() => {
-    setTeams([{ teamId: uuidv4().slice(0, 8), teamName: "", teamValue: "" }]);
-  }, []);
-
-  useEffect(() => {
-    if (props.totalTeams !== 0) setCurrTeams(props.totalTeams);
-  }, [props.totalTeams]);
+    if (!props.showSchedule) {
+      setTeams([]);
+      setCurrTeams([]);
+      reset = true;
+    } else {
+      setTeams([{ teamId: uuidv4().slice(0, 8), teamName: "", teamValue: "" }]);
+    }
+    if (props.totalTeams !== 0) {
+      setCurrTeams(props.totalTeams);
+    }
+  }, [props.showSchedule, props.totalTeams]);
 
   const addTeam = (team) => {
+    reset = false;
     setTeams((prevTeams) => [
       ...prevTeams,
       { teamId: uuidv4().slice(0, 8), ...team },
@@ -47,6 +54,7 @@ function Schedule(props) {
               key={team.teamId}
               addTeam={addTeam}
               disable={teams.length === i + 1 ? false : true}
+              reset={reset}
             />
           )
         )}

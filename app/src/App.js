@@ -22,6 +22,7 @@ function App() {
   // function calls from Header when click on new schedule btn and set popup to true
   function openPopup() {
     setPopup(true);
+    setShowSchedule(false);
   }
 
   // function calls from Popup when get validate data successfuly and set popup to false

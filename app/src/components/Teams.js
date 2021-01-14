@@ -1,14 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./style.css";
 import "./Teams.css";
 import { TeamsContext } from "../contexts/TeamsContext";
 
 let totalTeams;
 let currentTeams = 0;
-function Teams({ addTeam, disable }) {
+function Teams({ addTeam, disable, reset }) {
   const [teamName, setTeamName] = useState("");
   const [teamValue, setTeamValue] = useState("");
   totalTeams = useContext(TeamsContext);
+  if (reset) {
+    currentTeams = 0;
+  }
 
   function getTeamData() {
     const tname = teamName.trim();

@@ -8,6 +8,7 @@ function Popup(props) {
     if (!(totalTeams && Number.isFinite(totalTeams) && totalTeams % 2 === 0))
       return;
     props.closePopup(totalTeams);
+    document.querySelector("#teams").value = "";
   }
 
   return (
