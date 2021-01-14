@@ -44,6 +44,7 @@ function App() {
         <MatchFixerPopup
           popup={showMatchFixer}
           showMatchFixer={showMatchFixerPopup}
+          reset={showSchedule}
         />
         <Popup popup={popup} closePopup={closePopup} />
         <Header openPopup={openPopup} />

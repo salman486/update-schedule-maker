@@ -6,12 +6,20 @@ import "./style.css";
 import "../working/scheduleMaker";
 import { getFixes } from "../working/scheduleMaker";
 
-function MatchFixerPopup({ popup, showMatchFixer }) {
+let done = false;
+function MatchFixerPopup({ popup, showMatchFixer, reset }) {
   const [totalFixes, setTotalFixes] = useState([]);
 
   useEffect(() => {
+    if (reset) {
+      setTotalFixes([{ key: uuidv4().slice(0, 8), none: ["noone"] }]);
+    }
+  }, [reset]);
+
+  useEffect(() => {
+    setTotalFixes([]);
     setTotalFixes([{ key: uuidv4().slice(0, 8), none: ["noone"] }]);
-  }, []);
+  }, [done]);
 
   function addFixes(currFix) {
     setTotalFixes((prevState) => [
@@ -45,6 +53,7 @@ function MatchFixerPopup({ popup, showMatchFixer }) {
           onClick={() => {
             getFixes(totalFixes);
             showMatchFixer(false);
+            done = true;
           }}
         >
           DONE
