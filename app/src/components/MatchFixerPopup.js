@@ -3,6 +3,8 @@ import GetMatchFixes from "./GetMatchFixes";
 import { v4 as uuidv4 } from "uuid";
 import "./MatchFixerPopup.css";
 import "./style.css";
+import "../working/scheduleMaker";
+import { getFixes } from "../working/scheduleMaker";
 
 function MatchFixerPopup({ popup, showMatchFixer }) {
   const [totalFixes, setTotalFixes] = useState([]);
@@ -37,7 +39,15 @@ function MatchFixerPopup({ popup, showMatchFixer }) {
             />
           ))}
         </div>
-        <button className="MatchFixer-submitbtn">DONE</button>
+        <button
+          className="MatchFixer-submitbtn"
+          onClick={() => {
+            getFixes(totalFixes);
+            showMatchFixer(false);
+          }}
+        >
+          DONE
+        </button>
         <h3 className="MatchFixer-caution">
           You can add more names in second coloumn seprate by space
         </h3>
