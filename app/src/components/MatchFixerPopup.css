@@ -1,0 +1,136 @@
+.MatchFixerPopup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+.closeMatchFixerPopup {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.closeMatchFixerPopup:hover {
+  opacity: 1;
+}
+
+.closeMatchFixerPopup:before,
+.closeMatchFixerPopup:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #f3aa4e;
+}
+.closeMatchFixerPopup:before {
+  transform: rotate(45deg);
+}
+.closeMatchFixerPopup:after {
+  transform: rotate(-45deg);
+}
+
+.closeMatchFixerPopup:active:before,
+.closeMatchFixerPopup:active:after {
+  top: 2px;
+  height: 30px;
+}
+
+.MatchFixerArea {
+  border: 2px solid #f3aa4e;
+  position: absolute;
+  box-sizing: border-box;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.MatchFixer-main {
+  width: 80%;
+  text-align: center;
+  height: 300px;
+  overflow: scroll;
+}
+
+.MatchFixer-submitbtn {
+  width: 80%;
+  padding: 8px;
+  margin-top: 20px;
+  background-color: #f3aa4e;
+  font-size: 20px;
+  border-radius: 25px;
+  transition: transform 0.5s;
+}
+.MatchFixer-submitbtn:active {
+  transform: scale(0.95);
+}
+
+@media screen and (max-width: 1000px) {
+  .MatchFixer-heading {
+    font-size: 18px;
+    text-align: center;
+  }
+  .MatchFixer-submitbtn {
+    padding: 4px;
+    margin-top: 10px;
+    background-color: #f3aa4e;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+  .MatchFixer-caution {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .MatchFixerArea {
+    width: 90%;
+  }
+  .closeMatchFixerPopup {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .MatchFixer-caution {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .MatchFixer-main {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .MatchFixer-heading {
+    font-size: 16px;
+    width: 90%;
+  }
+  .MatchFixer-caution {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .MatchFixer-heading {
+    font-size: 14px;
+    width: 95%;
+  }
+  .MatchFixer-caution {
+    width: 95%;
+  }
+}

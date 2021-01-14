@@ -1,0 +1,87 @@
+.Match-fixer {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.MatchFixer-input {
+  margin: 0px 10px 10px 0px;
+  border-radius: 20px;
+  border: none;
+  padding: 8px 15px;
+  box-sizing: border-box;
+}
+
+.MatchFixer-input--team1 {
+  width: 20%;
+}
+
+.MatchFixer-input--team2 {
+  width: 40%;
+}
+
+.notwith {
+  margin-right: 10px;
+}
+
+.Match-fixer-newbtn {
+  background-color: #f3aa4e;
+  padding: 5px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 50px;
+  font-size: 20px;
+  transition: all 0.5s;
+}
+
+.Match-fixer-newbtn:hover {
+  background-color: #c58536;
+}
+
+.Match-fixer-newbtn:active {
+  transform: scale(0.95);
+}
+
+.Match-fixer-newbtn-disabled {
+  background-color: #c58536 !important;
+  cursor: initial;
+}
+
+@media screen and (max-width: 1000px) {
+  .MatchFixer-input {
+    margin: 0px 7px 7px 0px;
+    border-radius: 20px;
+    border: none;
+    padding: 4px 10px;
+    box-sizing: border-box;
+  }
+  .Match-fixer-newbtn {
+    padding: 2px;
+    border-radius: 15px;
+    width: 40px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Match-fixer {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #f3aa4e;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .MatchFixer-input {
+    width: 100%;
+    margin: 0px;
+    border-radius: 20px;
+    border: none;
+    padding: 4px 10px;
+    box-sizing: border-box;
+  }
+  .Match-fixer-newbtn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

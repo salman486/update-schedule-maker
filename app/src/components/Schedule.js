@@ -55,6 +55,9 @@ function Schedule(props) {
       <button
         className={`Schedule-fixer-btn btn ${currTeams && "disabled"}`}
         disabled={currTeams}
+        onClick={() => {
+          props.showMatchFixer(true);
+        }}
       >
         ADD MATCH FIXES
       </button>
