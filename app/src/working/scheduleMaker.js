@@ -6,6 +6,21 @@ export default function scheduleMaker() {
   allFixes.forEach((ele) => delete ele["key"]);
   allTeams.forEach((ele) => delete ele["teamId"]);
 
+  nowWithArray(allTeams, allFixes);
+
+  console.log(allTeams);
+  console.log(allFixes);
+}
+
+export function getTeams(teams) {
+  allTeams = [...teams];
+}
+
+export function getFixes(fixes) {
+  allFixes = [...fixes];
+}
+
+function nowWithArray(allTeams, allFixes) {
   allTeams.forEach((team) => {
     allFixes.forEach((fix) => {
       for (const i of Object.entries(fix)) {
@@ -26,17 +41,6 @@ export default function scheduleMaker() {
       }
     });
   });
-
-  console.log(allTeams);
-  console.log(allFixes);
-}
-
-export function getTeams(teams) {
-  allTeams = [...teams];
-}
-
-export function getFixes(fixes) {
-  allFixes = [...fixes];
 }
 
 getTeams([
