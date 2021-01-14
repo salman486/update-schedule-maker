@@ -6,7 +6,7 @@ function GetMatchFixes(props) {
   const [otherTeams, setOtherTeams] = useState("");
   // {salman: []}
 
-  function validateFixes() {
+  function validateFixes(addFixes) {
     const team = team1.trim();
     const otherTeamsArr = otherTeams
       .split(" ")
@@ -15,7 +15,7 @@ function GetMatchFixes(props) {
     if (team.length === 0 || otherTeamsArr.length === 0) {
       return;
     } else {
-      return { [team]: otherTeamsArr };
+      addFixes({ [team]: otherTeamsArr });
     }
   }
 
@@ -45,7 +45,7 @@ function GetMatchFixes(props) {
           props.disable ? "Match-fixer-newbtn-disabled" : ""
         }`}
         onClick={() => {
-          props.addFixes(validateFixes());
+          validateFixes(props.addFixes);
         }}
         disabled={props.disable}
       >
