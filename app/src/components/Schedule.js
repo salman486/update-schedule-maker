@@ -38,15 +38,26 @@ function Schedule(props) {
       </div>
 
       <section className="Schedule-area">
-        {teams.map((team, i) => (
-          <Teams
-            team={team}
-            key={team.teamId}
-            addTeam={addTeam}
-            disable={teams.length === i + 1 ? false : true}
-          />
-        ))}
+        {teams.map((team, i) =>
+          currTeams === 0 && teams.length === i + 1 ? (
+            ""
+          ) : (
+            <Teams
+              team={team}
+              key={team.teamId}
+              addTeam={addTeam}
+              disable={teams.length === i + 1 ? false : true}
+            />
+          )
+        )}
       </section>
+
+      <button
+        className={`Schedule-fixer-btn btn ${currTeams && "disabled"}`}
+        disabled={currTeams}
+      >
+        ADD MATCH FIXES
+      </button>
 
       <button
         className={`Schedule-submit-btn btn ${currTeams && "disabled"}`}
@@ -56,12 +67,6 @@ function Schedule(props) {
         }}
       >
         COPY YOUR SCHEDULE
-      </button>
-      <button
-        className={`Schedule-reset-btn btn ${currTeams && "disabled"}`}
-        disabled={currTeams}
-      >
-        RESET SCHEDULE
       </button>
     </div>
   );

@@ -5,14 +5,14 @@
 }
 
 .Schedule-submit-btn,
-.Schedule-reset-btn {
+.Schedule-fixer-btn {
   margin: 10px 15% 0px 15%;
   width: 70%;
   height: 35px;
   border-radius: 5px;
   font-size: 18px;
 }
-.Schedule-reset-btn {
+.Schedule-submit-btn {
   margin-bottom: 10px;
 }
 
@@ -50,12 +50,12 @@
     margin: 0px 10%;
   }
   .Schedule-submit-btn,
-  .Schedule-reset-btn {
+  .Schedule-fixer-btn {
     margin: 10px 10% 0px 10%;
     /* margin: 10px 10%; */
     width: 80%;
   }
-  .Schedule-reset-btn {
+  .Schedule-submit-btn {
     margin-bottom: 10px;
   }
 }
@@ -65,11 +65,11 @@
     margin: 0px 2%;
   }
   .Schedule-submit-btn,
-  .Schedule-reset-btn {
+  .Schedule-fixer-btn {
     margin: 10px 2% 0px 2%;
     width: 96%;
   }
-  .Schedule-reset-btn {
+  .Schedule-submit-btn {
     margin-bottom: 10px;
   }
 }
@@ -83,11 +83,11 @@
     font-size: 16px;
   }
   .Schedule-submit-btn,
-  .Schedule-reset-btn {
+  .Schedule-fixer-btn {
     font-size: 16px;
     margin: 7px 2% 0px 2%;
   }
-  .Schedule-reset-btn {
+  .Schedule-submit-btn {
     margin-bottom: 7px;
   }
 }
@@ -101,11 +101,11 @@
     font-size: 14px;
   }
   .Schedule-submit-btn,
-  .Schedule-reset-btn {
+  .Schedule-fixer-btn {
     font-size: 14px;
     margin: 5px 2% 0px 2%;
   }
-  .Schedule-reset-btn {
+  .Schedule-submit-btn {
     margin-bottom: 5px;
   }
 }
