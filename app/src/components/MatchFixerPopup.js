@@ -1,9 +1,22 @@
-import React from "react";
-import MatchFixer from "./MatchFixer";
+import React, { useState, useEffect } from "react";
+import GetMatchFixes from "./GetMatchFixes";
+import { v4 as uuidv4 } from "uuid";
 import "./MatchFixerPopup.css";
 import "./style.css";
 
 function MatchFixerPopup({ popup, showMatchFixer }) {
+  const [totalFixes, setTotalFixes] = useState([]);
+
+  useEffect(() => {
+    setTotalFixes([{ key: uuidv4().slice(0, 8), none: ["noone"] }]);
+  }, []);
+
+  function addFixes(currFix) {
+    setTotalFixes((prevState) => [
+      ...prevState,
+      { key: uuidv4().slice(0, 8), ...currFix },
+    ]);
+  }
   return (
     <div className={`MatchFixerPopup ${popup ? "" : "hidden"}`}>
       <div
@@ -16,15 +29,13 @@ function MatchFixerPopup({ popup, showMatchFixer }) {
           Remember name should be exactly same
         </h1>
         <div className="MatchFixer-main">
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
-          <MatchFixer />
+          {totalFixes.map((fix, i) => (
+            <GetMatchFixes
+              addFixes={addFixes}
+              key={fix.key}
+              disable={totalFixes.length === i + 1 ? false : true}
+            />
+          ))}
         </div>
         <button className="MatchFixer-submitbtn">DONE</button>
         <h3 className="MatchFixer-caution">

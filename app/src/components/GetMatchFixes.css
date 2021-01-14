@@ -10,6 +10,7 @@
   border: none;
   padding: 8px 15px;
   box-sizing: border-box;
+  color: black;
 }
 
 .MatchFixer-input--team1 {
@@ -33,6 +34,8 @@
   width: 50px;
   font-size: 20px;
   transition: all 0.5s;
+  color: black;
+  font-weight: bold;
 }
 
 .Match-fixer-newbtn:hover {
@@ -44,7 +47,7 @@
 }
 
 .Match-fixer-newbtn-disabled {
-  background-color: #c58536 !important;
+  background-color: #8b5e27 !important;
   cursor: initial;
 }
 
