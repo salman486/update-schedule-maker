@@ -26,7 +26,6 @@ function MatchFixerPopup({ popup, showMatchFixer, reset }) {
       ...prevState,
       { key: uuidv4().slice(0, 8), ...currFix },
     ]);
-    console.log(totalFixes);
   }
   return (
     <div className={`MatchFixerPopup ${popup ? "" : "hidden"}`}>

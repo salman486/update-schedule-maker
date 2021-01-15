@@ -20,6 +20,14 @@ export default function scheduleMaker() {
     const text = `${match[0].padEnd(10)}VS    ${match[1]}`;
     textToCopy += text + "\n";
   });
+  let el = document.createElement("textarea");
+  el.value = textToCopy;
+  el.setAttribute("readonly", "");
+  el.style = { position: "absolute", left: "-9999px" };
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
 }
 
 function app(arr, matches) {
@@ -75,7 +83,6 @@ function matchOrganizer(orgMatches, totalMatches, saveMatches, currPlayer) {
     }
     player++;
   }
-  // totalMatches.shift();
 }
 
 function makeMatch(saveMatches, totalMatches) {
@@ -281,4 +288,4 @@ getFixes([
   { shahzaid: ["hamza", "awais"] },
 ]);
 
-scheduleMaker();
+// scheduleMaker();
