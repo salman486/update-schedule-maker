@@ -36,6 +36,7 @@ function Teams({ addTeam, disable, reset }) {
         onChange={(e) => setTeamName(e.target.value)}
         className="Teams-input Teams-input--text"
         disabled={disable}
+        autoFocus
       />
 
       <label className="Teams-label">Enter teams: </label>

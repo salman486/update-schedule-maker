@@ -29,6 +29,7 @@ function GetMatchFixes(props) {
         }}
         value={team1}
         disabled={props.disable}
+        autoFocus
       />
       <span className="notwith">NOT WITH</span>
       <input
