@@ -76,6 +76,7 @@ function Schedule(props) {
         onClick={() => {
           getTeams(teams);
           scheduleMaker();
+          window.location.reload();
         }}
       >
         COPY YOUR SCHEDULE

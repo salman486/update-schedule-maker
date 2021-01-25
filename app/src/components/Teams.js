@@ -14,7 +14,7 @@ function Teams({ addTeam, disable, reset }) {
   }
 
   function getTeamData() {
-    const tname = teamName.trim();
+    const tname = teamName.trim().toLowerCase();
     const tvalue = +teamValue;
     if (
       tname.length === 0 ||

@@ -7,8 +7,9 @@ function GetMatchFixes(props) {
   // {salman: []}
 
   function validateFixes(addFixes) {
-    const team = team1.trim();
+    const team = team1.trim().toLowerCase();
     const otherTeamsArr = otherTeams
+      .toLowerCase()
       .split(" ")
       .filter((team) => team.length > 0);
 

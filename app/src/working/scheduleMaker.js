@@ -1,4 +1,3 @@
-// import { makeSchedule } from "./app.js";
 let allTeams = [];
 let allFixes = [];
 let initMatch = 0;
@@ -11,13 +10,15 @@ export default function scheduleMaker() {
     team["teamValue"],
     team["notwith"],
   ]);
-
+  sortArray(arr);
   while (arr.length > 0) {
     app(arr, matches);
   }
 
-  matches.forEach((match) => {
-    const text = `${match[0].padEnd(10)}VS    ${match[1]}`;
+  matches.forEach((match, index) => {
+    const text = `${(index + 1 + ".").padStart(4).padEnd(5)}${
+      match[0][0].toUpperCase() + match[0].slice(1)
+    } VS ${match[1][0].toUpperCase() + match[1].slice(1)}`;
     textToCopy += text + "\n";
   });
   let el = document.createElement("textarea");
@@ -31,20 +32,6 @@ export default function scheduleMaker() {
 }
 
 function app(arr, matches) {
-  const playerMatch =
-    arr.length - 1 === 1
-      ? matchFixer(arr[0][1], arr.length - 1)
-      : matchFixer(
-          arr[0][1],
-          arr.length - 1 - arr[0][2].length === 0
-            ? arr.length - 1
-            : arr.length - 1 - arr[0][2].length
-        );
-
-  if (!playerMatch["player0"]) {
-    makeMatch(matches, arr);
-  }
-
   const copiedArr =
     arr.length - 1 === 1
       ? arr
@@ -55,12 +42,24 @@ function app(arr, matches) {
               .join("")
               .includes(el[0] + " ")
         );
+  const playerMatch =
+    arr.length - 1 === 1
+      ? matchFixer(arr[0][1], arr.length - 1)
+      : matchFixer(
+          arr[0][1],
+          arr.length - 1 - arr[0][2].length === 0
+            ? arr.length - 1
+            : arr.length - 1 - arr[0][2].length,
+          copiedArr
+        );
 
+  if (!playerMatch["player0"]) {
+    makeMatch(matches, arr);
+  }
   matchOrganizer(playerMatch, copiedArr, matches, 1);
   removeFixes(arr);
   arr.shift();
   sortArray(arr);
-
   matchChecker(arr);
 }
 
@@ -86,12 +85,32 @@ function matchOrganizer(orgMatches, totalMatches, saveMatches, currPlayer) {
 }
 
 function makeMatch(saveMatches, totalMatches) {
-  for (let i = 1; i <= totalMatches[0][1]; i++) {
+  let remainingMatches = 0;
+  totalMatches.forEach((match, i) => {
+    if (i > 0) {
+      remainingMatches += match[1];
+    }
+  });
+  if (totalMatches[0][1] > remainingMatches) {
+    let self = (totalMatches[0][1] - remainingMatches) / 2;
+    remainingMatches = totalMatches[0][1] - self * 2;
+    totalMatches[0][1] -= self * 2;
+
+    while (self !== 0) {
+      saveMatches.push([totalMatches[0][0], totalMatches[0][0]]);
+      self--;
+      initMatch--;
+    }
+  } else {
+    remainingMatches = totalMatches[0][1];
+  }
+
+  for (let i = 1; i <= remainingMatches; i++) {
     saveMatches.push([totalMatches[0][0]]);
   }
 }
 
-function matchFixer(totalMatches, totalPlayers) {
+function matchFixer(totalMatches, totalPlayers, arr) {
   let matches = {};
   let remainingMatches = totalMatches;
 
@@ -124,10 +143,28 @@ function matchFixer(totalMatches, totalPlayers) {
   }
 
   if (remainingMatches > totalPlayers) {
-    remainingMatches -= totalPlayers;
+    let matchWithEveryOne = Math.trunc(remainingMatches / totalPlayers);
 
-    for (let i = 1; i <= totalPlayers; i++) {
-      matches[`player${i}`] = 1;
+    let counter = 1;
+
+    while (matchWithEveryOne !== 0) {
+      if (counter === 1) {
+        remainingMatches -= totalPlayers;
+      }
+      for (let i = 1; i <= totalPlayers; i++) {
+        if (counter === 1) {
+          matches[`player${i}`] = 1;
+        } else {
+          if (arr[i][1] >= 9) {
+            matches[`player${i}`] += 1;
+            remainingMatches--;
+          } else {
+            break;
+          }
+        }
+      }
+      counter++;
+      matchWithEveryOne--;
     }
   } else {
     for (let i = 1; i <= totalMatches; i++) {
@@ -136,30 +173,58 @@ function matchFixer(totalMatches, totalPlayers) {
     return matches;
   }
   let i = 1;
-
   while (remainingMatches > 0) {
-    if (Math.trunc(totalPlayers / 2 - i) === 0) {
-      let match = Math.ceil(remainingMatches / Math.trunc(totalPlayers / 2));
-      remainingMatches -= match;
-      matches[`player${i}`] += match;
-      i++;
+    if (arr[i]) {
+      if (Math.trunc(totalPlayers / 2 - i) <= 1) {
+        let match = Math.ceil(remainingMatches / Math.trunc(totalPlayers / 2));
+        if (arr[i][1] >= match) {
+          remainingMatches -= match;
+          matches[`player${i}`] += match;
+        } else {
+          remainingMatches -= arr[i][1];
+          matches[`player${i}`] += arr[i][1];
+        }
+        i++;
+      } else {
+        let match = Math.ceil(
+          remainingMatches / Math.trunc(totalPlayers / 2 - i)
+        );
+        if (arr[i][1] - matches[`player${i}`] >= match) {
+          remainingMatches -= match;
+          matches[`player${i}`] += match;
+        } else {
+          remainingMatches -= arr[i][1] - matches[`player${i}`];
+          matches[`player${i}`] += arr[i][1] - matches[`player${i}`];
+        }
+        i++;
+      }
     } else {
-      let match = Math.ceil(
-        remainingMatches / Math.trunc(totalPlayers / 2 - i)
-      );
-      remainingMatches -= match;
-      matches[`player${i}`] += match;
-      i++;
+      i--;
+      if (remainingMatches === arr[i][1] - matches[`player${i}`]) {
+        remainingMatches -= arr[i][1] - matches[`player${i}`];
+        matches[`player${i}`] += arr[i][1] - matches[`player${i}`];
+      } else if (remainingMatches < arr[i][1] - matches[`player${i}`]) {
+        remainingMatches = 0;
+        matches[`player${i}`] += remainingMatches;
+      } else {
+        remainingMatches -= arr[i][1] - matches[`player${i}`];
+        matches[`player${i}`] += arr[i][1] - matches[`player${i}`];
+        i--;
+      }
     }
   }
   return matches;
 }
 
 function matchChecker(arr) {
+  const indexes = [];
   arr.forEach((team, i) => {
-    if (team[1] === 0) {
-      arr.splice(i, 1);
+    if (team[1] <= 0) {
+      indexes.push(i);
     }
+  });
+  indexes.forEach((index, i) => {
+    arr.splice(index - i, 1);
   });
 }
 
@@ -230,62 +295,14 @@ function notWithArray() {
 
   let shouldBeInNotWith = [];
   allTeams.forEach((team) => {
-    let counter = 0;
     for (const ele of team["notwith"]) {
       allTeamsNames.forEach((teamName) => {
         if (ele.toLowerCase() === teamName) {
           shouldBeInNotWith.push(ele);
         }
       });
-      counter++;
     }
-    counter = 0;
     team["notwith"] = [...shouldBeInNotWith];
     shouldBeInNotWith = [];
   });
 }
-
-// getTeams([
-//   12,
-//   { teamName: "salman", teamValue: 2 },
-//   { teamName: "rizwan", teamValue: 3 },
-//   { teamName: "irha", teamValue: 1 },
-//   { teamName: "hamza", teamValue: 2 },
-//   { teamName: "umair", teamValue: 4 },
-// ]);
-
-getTeams([
-  12,
-  { teamName: "salman", teamValue: 12 },
-  { teamName: "rizwan", teamValue: 10 },
-  { teamName: "irha", teamValue: 6 },
-  { teamName: "hamza", teamValue: 8 },
-  { teamName: "dawood", teamValue: 20 },
-  { teamName: "ibrahim", teamValue: 24 },
-  { teamName: "dev", teamValue: 10 },
-  { teamName: "awais", teamValue: 6 },
-  { teamName: "shahzaib", teamValue: 6 },
-  { teamName: "ali", teamValue: 2 },
-  { teamName: "ahmed", teamValue: 3 },
-  { teamName: "haider", teamValue: 1 },
-  { teamName: "junaid", teamValue: 5 },
-  { teamName: "bilal", teamValue: 5 },
-  { teamName: "umair", teamValue: 7 },
-  { teamName: "zubair", teamValue: 3 },
-]);
-
-// getFixes([12, { salman: ["umair"] }]);
-
-getFixes([
-  12,
-  { salman: ["rizwan", "irha", "hamza", "awais", "ali", "dev"] },
-  { irha: ["hamza", "dev"] },
-  { ali: ["ahmed", "haider"] },
-  { haider: ["ali"] },
-  { junaid: ["bilal"] },
-  { umair: ["zubair"] },
-  { ibrahim: ["dawood"] },
-  { shahzaid: ["hamza", "awais"] },
-]);
-
-// scheduleMaker();
